@@ -1,0 +1,21 @@
+services:
+  invoice-service:
+    build: ./invoice-service
+    container_name: invoice-service
+    ports:
+      - "8000:8000"
+    environment:
+      # Point the invoice-service at the serverless container
+      SERVERLESS_FUNCTION_URL: "https://log-activity-1059882736634.us-central1.run.app"
+    depends_on:
+      - serverless
+
+  serverless:
+    build: ./serverless
+    container_name: serverless
+    ports:
+      - "8080:8080"
+    environment:      
+      - GOOGLE_APPLICATION_CREDENTIALS
+    volumes:
+      - ./service-account-credentials.json:/app/credentials.json
