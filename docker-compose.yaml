@@ -1,11 +1,11 @@
 services:
-  invoice-service:
-    build: ./invoice-service
-    container_name: invoice-service
+  racuni:
+    build: ./racuni
+    container_name: racuni
     ports:
       - "8000:8000"
     environment:
-      # Point the invoice-service at the serverless container
+      # Point the racuni at the serverless container
       SERVERLESS_FUNCTION_URL: "https://log-activity-1059882736634.us-central1.run.app"
     depends_on:
       - serverless
@@ -16,6 +16,6 @@ services:
     ports:
       - "8080:8080"
     environment:      
-      - GOOGLE_APPLICATION_CREDENTIALS
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials.json
     volumes:
       - ./service-account-credentials.json:/app/credentials.json
