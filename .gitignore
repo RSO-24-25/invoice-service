@@ -3,5 +3,5 @@
 .env.*
 
 # Ignore credentials
-service-account-credentials.json
-credentials.json
+# service-account-credentials.json
+# credentials.json
